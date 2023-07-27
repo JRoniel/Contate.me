@@ -92,7 +92,7 @@
         }
 
         // Caso não encontre nenhuma palavra-chave, a mensagem "seu portfólio." é colocada para finalizar a frase.
-        return "(assunto não identificado)";
+        return mensagem;
       }
 
       handleSubmit(event) {
@@ -113,7 +113,7 @@
 
             // Encontra motivo do contato de acordo com a função "encontrarAssunto" repassa ao final da mensagem
             const assunto = this.encontrarAssunto(encodeURIComponent(message));
-            const contatoFinal = `Meu%20nome%20%C3%A9%20${name}%0A%0AEstou%20entrando%20em%20contato%20para%20falar%20sobre%20${assunto}`;
+            const contatoFinal = `Meu%20nome%20%C3%A9%20${name}!%0A%0AEstou%20entrando%20em%20contato%20para%20falar%20sobre:%20${assunto}`;
 
             // Redirecionamento para o link do WhatsApp com a mensagem preenchida
             window.location.href = `https://wa.me/${number}?text=${contatoFinal}`;
