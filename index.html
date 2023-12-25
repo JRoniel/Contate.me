@@ -89,7 +89,10 @@
 
         .card {
             background-color: transparent;
-            border: 0.1px solid #000;
+        }
+
+        .border-black {
+          border: 0.1px solid #fff;
         }
 
         .card-title,
@@ -237,6 +240,9 @@
                 images.forEach(image => {
                     image.classList.remove('invert-images');
                 });
+                document.querySelectorAll('.card').forEach(element => {
+                  element.classList.remove('border-black');
+                });
                 document.querySelectorAll('.light-text').forEach(element => {
                     element.classList.remove('dark-text');
                 });
@@ -246,6 +252,9 @@
                 body.classList.add('text-dark');
                 images.forEach(image => {
                     image.classList.add('invert-images');
+                });
+                document.querySelectorAll('.card').forEach(element => {
+                  element.classList.add('border-black');
                 });
                 document.querySelectorAll('.light-text').forEach(element => {
                     element.classList.add('dark-text');
