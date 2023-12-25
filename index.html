@@ -1,133 +1,266 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>John Roniel - Contato</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    body {
-      background-color: #34495e;
-      color: #fff;
-    }
-
-    img {
-      border: 5px solid #000000;
-    }
-
-    /* Estilo personalizado para o hover do botão */
-    .animated-btn {
-      background-color: #2ecc71; /* Cor verde limão */
-      color: #fff; /* Cor branca para o texto quando o mouse passar por cima */
-    }
-
-    textarea:focus, input:focus {
-      border: none;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-4 text-center"> <!-- Adicionado "text-center" para centralizar o conteúdo -->
-        <img src="img.png" alt="Imagem de Perfil" class="img-fluid w-50 rounded-circle">
-      </div>
-
-      <div class="col-lg-6">
-        <div class="mb-4 text-center">
-          <h2 class="mb-0">John Roniel</h2> <!-- Adicionado "text-center" para centralizar o texto -->
-          <p3 class="mt-0">Web developer / BackEnd</p3>
-        </div>
-        <form id="contactForm" method="post">
-          <div class="form-group">
-            <label for="name">Nome:</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Luis Silva (exemplo)" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Mensagem:</label>
-            <textarea class="form-control" id="message" name="message" rows="2" placeholder="Preciso de ajuda com a configuração do meu servidor web. (exemplo)" required></textarea>
-          </div>
-          <button type="submit" class="mb-4 text-center btn btn-lg animated-btn">Enviar</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bootstrap JS (Optional, if you want to use JavaScript features from Bootstrap) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
-    class ContactFormHandler {
-      constructor() {
-        // Captura o formulário quando é enviado
-        document.getElementById("contactForm").addEventListener("submit", this.handleSubmit.bind(this));
-      }
-
-      // Defina suas palavras-chave relacionadas ao assunto
-      static palavrasChave = [
-        "Bug", "Erro", "Problema", "Correção", "Melhoria", "Desempenho", "Otimização",
-        "Atualização", "Implementação", "Integração", "API", "Segurança", "Autenticação",
-        "Autorização", "Backup", "Restauração", "Migração", "Suporte técnico", "Documentação",
-        "Consultoria", "Desenvolvimento de novas funcionalidades", "Personalização", "Testes",
-        "Manutenção", "Revisão de código", "Treinamento", "Configuração",
-        "Configuração do ambiente de desenvolvimento", "Integração com serviços externos",
-        "Consulta sobre tecnologias e linguagens de programação", "Velocidade de serviço", "blog",
-        "Adsense", "Monitoria", "Web Desing", "Javascript", "NodeJs", "Web", "php", "Configurações"
-      ].map(palavra => palavra.toLowerCase());
-
-      encontrarAssunto(mensagem) {
-        // Converta a mensagem em letras minúsculas e remova caracteres especiais e pontuações
-        const mensagemFormatada = mensagem.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
-
-        // Separe a mensagem em palavras individuais
-        const palavrasMensagem = mensagemFormatada.split(" ");
-
-        // Verifique se alguma palavra da mensagem corresponde a uma palavra-chave
-        for (let palavra of palavrasMensagem) {
-          if (ContactFormHandler.palavrasChave.includes(palavra)) {
-            return palavra;
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>John Roniel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome para os ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilos do botão de alternância de modo */
+        #dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: auto;
+            z-index: 1000;
+            background-color: #fff;
+            border-radius: 50%;
+            padding: 6px;
+        }
+        
+        .modal {
+          z-index: 1100;
         }
 
-        // Caso não encontre nenhuma palavra-chave, a mensagem "seu portfólio." é colocada para finalizar a frase.
-        return mensagem;
-      }
+        .bg-dark {
+            background-color: #222f3e !important;
+        }
 
-      handleSubmit(event) {
-        event.preventDefault(); // Previne o envio padrão do formulário
+        .dark-text {
+            color: #fff !important;
+            /* Adicionando !important para sobrescrever ac§or do texto */
+        }
 
-        // Captura os dados do formulário
-        const name = document.getElementById("name").value;
-        const message = document.getElementById("message").value;
+        .light-bg {
+            background-color: #fff;
+        }
 
-        // URL da API contendo os dados necessários
-        const apiURL = "https://raw.githubusercontent.com/JRoniel/JRoniel/main/base.json";
+        .light-text {
+            color: #222f3e;
+        }
 
-        // Utilizando a função fetch para fazer a requisição dos dados
-        fetch(apiURL)
-          .then(response => response.json()) // Parse da resposta como JSON
-          .then(data => {
-            const number = data["number_standard"];
+        /* Classe para inverter a cor das imagens para branco */
+        .invert-images {
+            filter: invert(100%);
+        }
 
-            // Encontra motivo do contato de acordo com a função "encontrarAssunto" repassa ao final da mensagem
-            const assunto = this.encontrarAssunto(encodeURIComponent(message));
-            const contatoFinal = `Meu%20nome%20%C3%A9%20${name}!%0A%0AEstou%20entrando%20em%20contato%20para%20falar%20sobre:%20${assunto}`;
+        /* Defina uma transição suave para a mudança de cor de fundo e de texto */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-            // Redirecionamento para o link do WhatsApp com a mensagem preenchida
-            window.location.href = `https://wa.me/${number}?text=${contatoFinal}`;
-          })
-          .catch(error => {
-            console.error("Ocorreu um erro ao obter os dados:", error);
-            // Aqui você pode adicionar algum tratamento de erro caso necessário
-          });
-      }
-    }
+        .card-img-top {
+            max-width: 40vw;
+            height: auto;
+            border-radius: 45%;
+        }
 
-    // Instanciando a classe para iniciar o handler do formulário
-    const contactFormHandler = new ContactFormHandler();
+        .card-profile {
+            border: none;
+            display: block;
+            margin: auto;
+            text-align: center;
+            padding: 20px 0;
+        }
 
-  </script>
+        /* Estilos adicionados para centralizar verticalmente e ajustar o espaço do card-icon */
+        .flex-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .card-icon {
+            max-width: 12vw;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card-link:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card {
+            background-color: transparent;
+        }
+
+        .card-title,
+        .card-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #loader,
+        #content {
+            display: none;
+        }
+
+        #footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #0275d8;
+            color: #f1f1f1;
+            text-align: center;
+            margin: auto;
+            padding-top: 10px;
+        }
+
+    </style>
+</head>
+
+<body class="light-bg">
+
+    <!-- Modal -->
+    <div class="modal fade" id="pixmodal" tabindex="-1" role="dialog" aria-labelledby="copyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="copyModalLabel">Pix Copia e Cola</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <textarea id="textToCopy" class="form-control" rows="5" readonly>00020126580014BR.GOV.BCB.PIX013689e1f57c-b568-4656-8115-28bb1eccf2415204000053039865802BR5922JOHN RONIEL DE ANDRADE6009SAO PAULO62140510rf7Z6OTMWj63048F21</textarea>
+                       
+                        <div class="input-group-append">
+                            <span class="input-group-text btn-copy" onclick="copyText()">
+                                <i class="far fa-copy"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <img id="dark-mode-toggle" src="../imgs/lampada-on.png" onclick="toggleDarkMode()" alt="Toggle Dark Mode">
+
+    <!-- Conteúdo -->
+    <div id="loader">
+        <!-- Adicionando uma div para a animação de carregamento -->
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <div id="content">
+        <!-- Div para o conteúdo da página -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <!-- Card do perfil -->
+                    <div class="card card-profile">
+                        <img src="../imgs/img.png" class="card-img-top" alt="Sua Foto">
+                        <div class="card-body">
+                            <p style="font-weight: 500; font-size: 19px" class="card-text light-text">John Roniel, Campina Grande-Pb</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <!-- Card para link de WhatsApp -->
+                    <a href="https://api.whatsapp.com/send/?phone=558382333568&text=Oii+John&type=phone_number&app_absent=0!" class="card-link">
+                        <div class="card">
+                            <div class="card-body flex-container">
+                                <img src="../imgs/whatsapp.png" class="card-icon">
+                                <div class="container">
+                                    <h5 class="card-title light-text">WhatsApp</h5>
+                                    <p class="card-text light-text">Me adicione à sua lista de contatos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="card-link" data-toggle="modal" data-target="#pixmodal">
+                        <div class="card">
+                            <div class="card-body flex-container">
+                                <img src="../imgs/pix.png" class="card-icon">
+                                <div class="container">
+                                    <h5 class="card-title light-text">Transferência PIX</h5>
+                                    <p class="card-text light-text">Chave para pagamentos via PIX.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://instagram.com/john.roniel" class="card-link">
+                        <div class="card">
+                            <div class="card-body flex-container">
+                                <img src="../imgs/instagram.png" class="card-icon">
+                                <div class="container">
+                                    <h5 class="card-title light-text">Instagram</h5>
+                                    <p class="card-text light-text">Meu perfil no Instagram, me siga.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Adicione mais colunas conforme necessário para mais links -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <!-- Footer -->
+        <p>Criado por John Roniel © <span id="year">2000</span></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        setTimeout(function () {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }, 800);
+
+        function toggleDarkMode() {
+            const body = document.body;
+            const images = document.querySelectorAll('.card-icon');
+
+            if (body.classList.contains('bg-dark')) {
+                body.classList.remove('bg-dark');
+                body.classList.remove('text-dark');
+                images.forEach(image => {
+                    image.classList.remove('invert-images');
+                });
+                document.querySelectorAll('.light-text').forEach(element => {
+                    element.classList.remove('dark-text');
+                });
+                document.getElementById('dark-mode-toggle').src = '../imgs/lampada-on.png';
+            } else {
+                body.classList.add('bg-dark');
+                body.classList.add('text-dark');
+                images.forEach(image => {
+                    image.classList.add('invert-images');
+                });
+                document.querySelectorAll('.light-text').forEach(element => {
+                    element.classList.add('dark-text');
+                });
+                document.getElementById('dark-mode-toggle').src = '../imgs/lampada-off.png';
+            }
+        }
+
+        document.querySelector('#year').innerHTML = new Date().getFullYear();
+
+        function copyText() {
+            var textArea = document.getElementById('textToCopy');
+            textArea.select();
+            document.execCommand('copy');
+        }
+    </script>
 </body>
+
 </html>
