@@ -1,277 +1,156 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>John Roniel</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Font Awesome para os ícones -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Estilos do botão de alternância de modo */
-        #dark-mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: auto;
-            z-index: 1000;
-            background-color: #fff;
-            border-radius: 50%;
-            padding: 6px;
-        }
-        
-        .modal {
-          z-index: 1100;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Curriculo John Roniel - Me conheça</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        .bg-dark {
-            background-color: #222f3e !important;
-        }
-
-        .dark-text {
-            color: #fff !important;
-            /* Adicionando !important para sobrescrever ac§or do texto */
-        }
-
-        .light-bg {
-            background-color: #fff;
-        }
-
-        .light-text {
-            color: #222f3e;
-        }
-
-        /* Classe para inverter a cor das imagens para branco */
-        .invert-images {
-            filter: invert(100%);
-        }
-
-        /* Defina uma transição suave para a mudança de cor de fundo e de texto */
-        body {
-            transition: background-color 0.4s ease, color 0.4s ease;
-        }
-
-        .card-img-top {
-            max-width: 40vw;
-            height: auto;
-            border-radius: 50%;
-        }
-
-        .card-profile {
-            border: none;
-            display: block;
-            margin: auto;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        /* Estilos adicionados para centralizar verticalmente e ajustar o espaço do card-icon */
-        .flex-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .card-icon {
-            max-width: 12vw;
-        }
-
-        .card-link {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .card-link:hover {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .card {
-            background-color: transparent;
-        }
-
-        .border-black {
-          border: 0.1px solid #fff;
-        }
-
-        .card-title,
-        .card-text {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-/* Loader */
-          #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          z-index: 9999;
-        }
-
-        #content {
-            display: none;
-        }
-
-        #footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #0275d8;
-            color: #f1f1f1;
-            text-align: center;
-            margin: auto;
-            padding-top: 10px;
-        }
-
-    </style>
 </head>
+<body class="w-full p-4">
 
-<body class="light-bg">
+    <!-- Modal Garçom -->
+    <div id="pdfModal-01" class="modal bg-opacity-50">
+        <div class="modal-content">
+            <span data-modal="pdfModal-01" class="close">&times;</span>
+            <iframe src="/assets/Curriculo JOHN RONIEL restaurante (1).pdf" width="100%" height="500px"></iframe>
+            <br>
+            <a href="/assets/Curriculo JOHN RONIEL restaurante (1).pdf" download="JOHN RONIEL curriculo.pdf" class="download-button"><i class="fa fa-download"></i> Baixar Currículo</a>
+        </div>
+    </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="pixmodal" tabindex="-1" role="dialog" aria-labelledby="copyModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="copyModalLabel">Pix Copia e Cola</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    <!-- Modal Dev -->
+    <div id="pdfModal-02" class="modal bg-opacity-50">
+        <div class="modal-content">
+            <span data-modal="pdfModal-02" class="close">&times;</span>
+            <iframe src="/assets/Curriculo JOHN RONIEL dev.pdf" width="100%" height="500px"></iframe>
+            <br>
+            <a href="/assets/Curriculo JOHN RONIEL dev.pdf" download="JOHN RONIEL curriculo.pdf" class="download-button"><i class="fa fa-download"></i> Baixar Currículo</a>
+        </div>
+    </div>
+
+    <!-- Modal PIX -->
+    <div id="pixModal" class="modal bg-opacity-50">
+        <div class="modal-content bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <span data-modal="pixModal" class="close text-gray-500 hover:text-gray-700 cursor-pointer float-right text-xl">&times;</span>
+            <h2 class="text-xl font-semibold mb-4">Chave PIX <i class="fa fa-star-o"></i></h2>
+            <div id="copyAlert" class="hidden mt-4 p-2 text-green-700 bg-green-100 rounded-lg"><i class="fa fa-check"></i> Chave PIX copiada com sucesso!</div>
+            <textarea id="textToCopy" class="form-control w-full mt-1 p-4 border rounded-lg text-gray-700 mb-4" rows="3" readonly>00020126580014BR.GOV.BCB.PIX013689e1f57c-b568-4656-8115-28bb1eccf2415204000053039865802BR5922JOHN RONIEL DE ANDRADE6009SAO PAULO62140510rf7Z6OTMWj63048F21</textarea>
+            <button id="copyButton" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Copiar PIX</button>
+        </div>
+    </div>
+
+      <div class="flex justify-center">
+        <article class="rounded-xl w-4/5 border border-gray-700 bg-gray-800 p-4 content-center">
+            <div class="flex items-center gap-4">
+            <img
+                alt="foto de John"
+                src="imgs/img.png"
+                class="size-16 rounded-full object-cover"
+            />
+        
+            <div>
+
+                <div class="mb-2">
+                    <h3 class="text-lg font-medium text-white">John Roniel</h3>
+                    <h5 class="text-xs font-medium text-white">Software Developer</h5>
                 </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <textarea id="textToCopy" class="form-control" rows="5" readonly>00020126580014BR.GOV.BCB.PIX013689e1f57c-b568-4656-8115-28bb1eccf2415204000053039865802BR5922JOHN RONIEL DE ANDRADE6009SAO PAULO62140510rf7Z6OTMWj63048F21</textarea>
-                       
-                        <div class="input-group-append">
-                            <span class="input-group-text btn-copy" onclick="copyText()">
-                                <i class="far fa-copy"></i>
-                            </span>
-                        </div>
-                    </div>
+                
+        
+                <div class="flow-root">
+                <ul class="-m-1 flex flex-wrap gap-1">
+                    <li class="p-1 leading-none link-social">
+                    <a href="https://api.whatsapp.com/send/?phone=558388750142&text=Oii+John&type=phone_number&app_absent=0!" class="text-xs font-medium text-gray-100"><i class="fa fa-whatsapp" style="font-size:18px"></i> WhatsApp </a>
+                    </li>
+        
+                    <li class="p-1 leading-none link-social">
+                    <a href="https://github.com/JRoniel" class="text-xs font-medium text-gray-100"><i class="fa fa-github" style="font-size:18px"></i>  GitHub </a>
+                    </li>
+        
+                    <li class="p-1 leading-none link-social">
+                    <a href="https://instagram.com/john.roniel" class="text-xs font-medium text-gray-100"><i class="fa fa-instagram" style="font-size:18px"></i> Instagram </a>
+                    </li>
+
+                    <li class="p-1 leading-none link-pix">
+                        <a href="#" id="openPix" class="text-xs p-2"><i class="fa fa-star-o" style="font-size: 18px;"></i> Chave PIX </a>
+                    </li>
+                </ul>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <img id="dark-mode-toggle" src="../imgs/lampada-on.png" onclick="toggleDarkMode()" alt="Toggle Dark Mode">
-
-    <!-- Conteúdo -->
-    <div id="loader">
-        <!-- Adicionando uma div para a animação de carregamento -->
-        <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-
-    <div id="content">
-        <!-- Div para o conteúdo da página -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2">
-                    <!-- Card do perfil -->
-                    <div class="card-profile">
-                        <img src="../imgs/img.png" class="card-img-top" alt="Sua Foto">
-                        <div class="card-body">
-                            <p style="font-weight: 500; font-size: 19px" class="card-text light-text">John Roniel, Campina Grande-Pb</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-2">
-
-                    <a href="#" class="card-link" data-toggle="modal" data-target="#pixmodal">
-                        <div class="card">
-                            <div class="card-body flex-container">
-                                <img src="../imgs/pix.png" class="card-icon">
-                                <div class="container">
-                                    <h5 class="card-title light-text">Transferência PIX</h5>
-                                    <p class="card-text light-text">Chave para pagamentos via PIX.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="https://instagram.com/john.roniel" class="card-link">
-                        <div class="card">
-                            <div class="card-body flex-container">
-                                <img src="../imgs/instagram.png" class="card-icon">
-                                <div class="container">
-                                    <h5 class="card-title light-text">Instagram</h5>
-                                    <p class="card-text light-text">Meu perfil no Instagram, me siga.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Adicione mais colunas conforme necessário para mais links -->
-                </div>
             </div>
-        </div>
+        
+            <ul class="mt-4 space-y-2">
+            <li>
+                <a href="#" id="openModal-01" class="block h-full rounded-lg border border-gray-700 p-4 border-modal">
+        
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+                </svg>              
+                <strong class="font-medium text-white">Curriculo Garçom</strong>
+
+                <p class="mt-1 text-xs font-medium text-gray-300">
+                    Servir é uma das minhas paixões, faço com alegria e sempre com o compromisso de oferecer a melhor experiência.
+                </p>
+                </a>
+            </li>
+        
+            <li>
+                <a id="openModal-02" href="#" class="block h-full rounded-lg border border-gray-700 p-4 border-modal">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                    </svg>
+                    
+                <strong class="font-medium text-white">Curriculo Desenvolvedor</strong>
+        
+                <p class="mt-1 text-xs font-medium text-gray-300">
+                    Desde 2014, tenho me dedicado ao desenvolvimento de códigos com tecnologias inovadoras. Sou um desenvolvedor Back-end.
+                </p>
+                </a>
+            </li>
+            </ul>
+        </article>
     </div>
 
-    <div id="footer">
-        <!-- Footer -->
-        <p>Criado por John Roniel © <span id="year">2000</span></p>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        setTimeout(function () {
-            document.getElementById('loader').style.display = 'none';
-            document.getElementById('content').style.display = 'block';
-        }, 800);
+    // Abrir os modais
+        document.getElementById('openModal-01').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('pdfModal-01').style.display = 'block';
+        });
 
-        function toggleDarkMode() {
-            const body = document.body;
-            const images = document.querySelectorAll('.card-icon');
-
-            if (body.classList.contains('bg-dark')) {
-                body.classList.remove('bg-dark');
-                body.classList.remove('text-dark');
-                images.forEach(image => {
-                    image.classList.remove('invert-images');
-                });
-                document.querySelectorAll('.card').forEach(element => {
-                  element.classList.remove('border-black');
-                });
-                document.querySelectorAll('.light-text').forEach(element => {
-                    element.classList.remove('dark-text');
-                });
-                document.getElementById('dark-mode-toggle').src = '../imgs/lampada-on.png';
-            } else {
-                body.classList.add('bg-dark');
-                body.classList.add('text-dark');
-                images.forEach(image => {
-                    image.classList.add('invert-images');
-                });
-                document.querySelectorAll('.card').forEach(element => {
-                  element.classList.add('border-black');
-                });
-                document.querySelectorAll('.light-text').forEach(element => {
-                    element.classList.add('dark-text');
-                });
-                document.getElementById('dark-mode-toggle').src = '../imgs/lampada-off.png';
-            }
-        }
-
-        document.querySelector('#year').innerHTML = new Date().getFullYear();
-
-        function copyText() {
-            var textArea = document.getElementById('textToCopy');
-            textArea.select();
+        document.getElementById('openPix').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('pixModal').style.display = 'block';
+        });
+        
+        document.getElementById('openModal-02').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('pdfModal-02').style.display = 'block';
+        });
+        
+        // Fechar os modais
+        var closeButtons = document.querySelectorAll('.close');
+        closeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var modalId = this.getAttribute('data-modal');
+                document.getElementById(modalId).style.display = 'none';
+            });
+        });
+        
+         // Copiar texto para a área de transferência
+        document.getElementById('copyButton').addEventListener('click', function() {
+            var textToCopy = document.getElementById('textToCopy');
+            textToCopy.select();
             document.execCommand('copy');
-        }
+            document.getElementById('copyAlert').style.display = 'block';
+            setTimeout(function() {
+                document.getElementById('copyAlert').style.display = 'none';
+            }, 3000);
+        });
+
     </script>
 </body>
-
 </html>

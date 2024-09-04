@@ -1,0 +1,85 @@
+/* Estilos básicos para o modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.download-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.download-button:hover {
+    background-color: #45a049;
+}
+
+
+body {
+    user-select: none;
+}
+
+svg {
+    width: 24px;
+    height: 24px;
+    filter: invert(100%);
+}
+
+.link-social a:hover {
+    color: #3498db;
+}
+
+.link-pix {
+    border: 1px solid #3498db;
+    border-radius: 30px;
+    background-color: #2980b9;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+.link-pix:hover {
+    border: 1px solid #3498db;
+    background-color: transparent;
+    color: #fff;
+    font-weight: bold;
+}
+
+.border-modal:hover {
+    border: 1px solid #3498db;
+}
